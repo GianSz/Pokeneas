@@ -1,0 +1,72 @@
+@keyframes colorChange {
+  0% {
+    border-color: red;
+    color: red
+  }
+
+  20% {
+    border-color: blue;
+    color: blue
+  }
+
+  40% {
+    border-color: yellow;
+    color: yellow
+  }
+
+  60% {
+    border-color: green;
+    color: green
+  }
+
+  80% {
+    border-color: orange;
+    color: orange
+  }
+
+  100% {
+    border-color: purple;
+    color: purple
+  }
+}
+
+.container {
+  border: 4px solid;
+  padding: 20px;
+  text-align: center;
+  width: 50%;
+  animation: colorChange 5s infinite;
+}
+
+
+.title-with-icons {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  animation: colorChange 5s infinite;
+}
+
+.title-with-icons::before,
+.title-with-icons::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url("/static/icon/pokeball_red.ico");
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.card-image {
+  width: 50%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}

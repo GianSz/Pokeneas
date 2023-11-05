@@ -1,8 +1,31 @@
-const { request, response } = require('express');
-const data = require('../data/data');
+const { response } = require('express');
+const getData = require('../repositories/dataApi');
 const os = require('os');
 
-const getPokeneas = (req = request, res = response) => {
+const getRandomPokenea = () => {
+  const data = getData();
+  let index = Math.floor(Math.random() * data.length);
+  if (index == data.length) index--;
+  return data[index];
+};
+
+const getPokeneaCard = (_, res = response) => {
+  const pokenea = getRandomPokenea();
+  res.render('show_card', {
+    image: pokenea.image,
+    docker_container: os.hostname(),
+  });
+};
+
+const getPokeneaJSON = (_, res = response) => {
+  const pokenea = getRandomPokenea();
+  const data = {
+    id: pokenea.id,
+    nombre: pokenea.name,
+    altura: pokenea.height,
+    habilidad: pokenea.hability,
+    contenedor_id: os.hostname(),
+  };
   res.status(200).json({
     status: 200,
     data,
@@ -10,17 +33,7 @@ const getPokeneas = (req = request, res = response) => {
   });
 };
 
-const getPokenea = (req = request, res = response) => {
-  const index = Math.floor(Math.random() * data.length);
-  data[index]['hostname'] = os.hostname();
-  res.status(200).json({
-    status: 200,
-    data: data[index],
-    message: 'OK',
-  });
-};
-
 module.exports = {
-  getPokeneas,
-  getPokenea,
-}
+  getPokeneaCard,
+  getPokeneaJSON,
+};

@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const { getPokeneas, getPokenea } = require('../controllers/pokeneas.controller');
+const {
+  getPokeneaJSON,
+  getPokeneaCard,
+} = require('../controllers/pokeneas.controller');
 
-router.get('/', getPokeneas);
-router.get('/random/', getPokenea);
+router.get('/json/pokenea', getPokeneaJSON);
+router.get('/card/pokenea', getPokeneaCard);
 
 module.exports = router;

@@ -10,6 +10,7 @@ const getRandomPokenea = () => {
 };
 
 const getPokeneaCard = (_, res = response) => {
+  console.log('getPokeneaCard', os.hostname());
   const pokenea = getRandomPokenea();
   res.render('show_card', {
     image: pokenea.image,
@@ -18,6 +19,7 @@ const getPokeneaCard = (_, res = response) => {
 };
 
 const getPokeneaJSON = (_, res = response) => {
+  console.log('getPokeneaJSON', os.hostname());
   const pokenea = getRandomPokenea();
   const data = {
     id: pokenea.id,
